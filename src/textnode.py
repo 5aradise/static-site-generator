@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Text_type(Enum):
     TEXT = 1
     BOLD = 2
@@ -10,15 +11,15 @@ class Text_type(Enum):
 
 
 class TextNode:
-    def __init__(self, text: str, text_type:Text_type, url:str = None):
+    def __init__(self, text: str, text_type: Text_type, url: str = None):
         self.text = text
         self.text_type = text_type
         self.url = url
-    
+
     def __eq__(self, other: 'TextNode') -> bool:
-        return (self.text == other.text 
-                and self.text_type == other.text_type 
+        return (self.text == other.text
+                and self.text_type == other.text_type
                 and self.url == other.url)
-    
+
     def __repr__(self) -> str:
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
