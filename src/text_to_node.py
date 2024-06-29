@@ -3,7 +3,7 @@ from textnode import *
 
 
 def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
-    new_nodes = list[TextType]()
+    new_nodes = list[TextNode]()
     for old_node in old_nodes:
         if type(old_node) is not TextNode:
             new_nodes.append(old_node)
@@ -34,3 +34,57 @@ def extract_markdown_links(text: str) -> list[tuple[str, str]]:
     pattern = r"\[(.*?)\]\((.*?)\)"
     matches = re.findall(pattern, text)
     return matches
+
+
+def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
+    new_nodes = list[TextNode]()
+    for old_node in old_nodes:
+        if type(old_node) is not TextNode:
+            new_nodes.append(old_node)
+
+        extracted_images = extract_markdown_images(old_node.text)
+        text_to_split = old_node.text
+
+        for (alt, src) in extracted_images:
+            splited_text = text_to_split.split(
+                f"![{alt}]({src})", 1)
+
+            text_before_image = splited_text[0]
+            if text_before_image != "":
+                new_nodes.append(
+                    TextNode(text_before_image, old_node.text_type))
+            new_nodes.append(TextNode(alt, TextType.IMAGE, src))
+
+            text_to_split = splited_text[1]
+
+        if text_to_split != "":
+            new_nodes.append(TextNode(text_to_split, old_node.text_type))
+
+    return new_nodes
+
+
+def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
+    new_nodes = list[TextNode]()
+    for old_node in old_nodes:
+        if type(old_node) is not TextNode:
+            new_nodes.append(old_node)
+
+        extracted_links = extract_markdown_links(old_node.text)
+        text_to_split = old_node.text
+
+        for (alt, src) in extracted_links:
+            splited_text = text_to_split.split(
+                f"[{alt}]({src})", 1)
+
+            text_before_link = splited_text[0]
+            if text_before_link != "":
+                new_nodes.append(
+                    TextNode(text_before_link, old_node.text_type))
+            new_nodes.append(TextNode(alt, TextType.LINK, src))
+
+            text_to_split = splited_text[1]
+
+        if text_to_split != "":
+            new_nodes.append(TextNode(text_to_split, old_node.text_type))
+
+    return new_nodes
