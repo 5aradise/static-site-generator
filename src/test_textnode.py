@@ -24,19 +24,19 @@ class TestTextNode(unittest.TestCase):
 class TestTextNode(unittest.TestCase):
     def test_converter(self):
         text_node = TextNode("Just text", TextType.TEXT)
-        html_node = text_node_to_html_node(text_node)
+        html_node = textnode_to_htmlnode(text_node)
         expected_html = "Just text"
         self.assertEqual(html_node.to_html(), expected_html)
 
     def test_converter2(self):
         text_node = TextNode("Italic text", TextType.ITALIC)
-        html_node = text_node_to_html_node(text_node)
+        html_node = textnode_to_htmlnode(text_node)
         expected_html = "<i>Italic text</i>"
         self.assertEqual(html_node.to_html(), expected_html)
 
     def test_converter3(self):
         text_node = TextNode("image", TextType.IMAGE, "boot.dev/cat.png")
-        html_node = text_node_to_html_node(text_node)
+        html_node = textnode_to_htmlnode(text_node)
         expected_html = '<img src="boot.dev/cat.png" alt="image"></img>'
         self.assertEqual(html_node.to_html(), expected_html)
 
