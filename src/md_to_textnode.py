@@ -8,8 +8,8 @@ delimiter_text_type_dict = {
 }
 
 
-def text_to_textnodes(text: str) -> list[TextNode]:
-    nodes_to_split = [TextNode(text, TextType.TEXT)]
+def md_to_textnodes(md: str) -> list[TextNode]:
+    nodes_to_split = [TextNode(md, TextType.TEXT)]
     for delimiter, text_type in delimiter_text_type_dict.items():
         nodes_to_split = split_nodes_delimiter(
             nodes_to_split, delimiter, text_type)

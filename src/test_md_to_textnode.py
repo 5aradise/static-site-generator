@@ -1,6 +1,6 @@
 import unittest
 
-from text_to_node import *
+from md_to_textnode import *
 
 
 class TestSplitNodeDelimiter(unittest.TestCase):
@@ -111,10 +111,10 @@ class TestSplitNodes(unittest.TestCase):
         self.assertEqual(new_nodes, expected_new_nodes)
 
 
-class TestTextToTextNodes(unittest.TestCase):
-    def test_text_to_textnodes(self):
+class TestMdToTextNodes(unittest.TestCase):
+    def test_md_to_textnodes(self):
         text = "This is **text** with an *italic* word and a `code block` and an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and a [link](https://boot.dev)"
-        nodes = text_to_textnodes(text)
+        nodes = md_to_textnodes(text)
         expected_nodes = [
             TextNode("This is ", TextType.TEXT),
             TextNode("text", TextType.BOLD),
@@ -130,9 +130,9 @@ class TestTextToTextNodes(unittest.TestCase):
         ]
         self.assertEqual(nodes, expected_nodes)
 
-    def test_text_to_textnodes2(self):
+    def test_md_to_textnodes2(self):
         text = "**bold***italic*`code block`![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png)[link](https://boot.dev)"
-        nodes = text_to_textnodes(text)
+        nodes = md_to_textnodes(text)
         expected_nodes = [
             TextNode("bold", TextType.BOLD),
             TextNode("italic", TextType.ITALIC),

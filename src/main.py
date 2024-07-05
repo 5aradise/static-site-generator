@@ -1,8 +1,8 @@
-from markdown_to_html_node import * # remote test
+from md_to_htmlnode import *
 
 
 def main():
-    markdown = """# h1 Heading 8-)
+    markdown = """# h1 Heading
 
 ## h2 Heading
 
@@ -42,7 +42,7 @@ Ordered
 Sample text here...
 ```
 """
-    html_node = markdown_to_html_node(markdown)
+    html_node = md_to_htmlnode(markdown)
     print(html_node.to_html())
 
 
