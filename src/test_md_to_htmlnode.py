@@ -95,6 +95,51 @@ function baz(s) {
         ]])
         self.assertEqual(htmlnode, expected_htmlnode)
 
+    def test_md_to_htmlnode2(self):
+        md = """# Heading1
+
+## Heading2
+
+### Heading3
+
+#### Heading4
+
+##### Heading5
+
+###### Heading6
+
+Just text
+
+**bold** *italic* `code`
+
+1. **bold**
+2. *italic*
+3. `code`
+
+* **bold**
+* *italic*
+* `code`
+
+```
+fn main(){
+    fmt.Print("Hello world")
+}
+```
+
+> Some quote
+> Some quote
+> Some quote
+
+[bears](http://placebear.com/200/200)
+
+![bears](http://placebear.com/200/200)"""
+        html = md_to_htmlnode(md).to_html()
+
+        expected_html = """<div><h1>Heading1</h1><h2>Heading2</h2><h3>Heading3</h3><h4>Heading4</h4><h5>Heading5</h5><h6>Heading6</h6><p>Just text</p><p><b>bold</b> <i>italic</i> <code>code</code></p><ol><li><b>bold</b></li><li><i>italic</i></li><li><code>code</code></li></ol><ul><li><b>bold</b></li><li><i>italic</i></li><li><code>code</code></li></ul><code>fn main(){
+    fmt.Print("Hello world")
+}</code><blockquote>Some quoteSome quoteSome quote</blockquote><p><a href="http://placebear.com/200/200">bears</a></p><p><img src="http://placebear.com/200/200" alt="bears"></p></div>"""
+
+        self.assertEqual(html, expected_html)
 
 if __name__ == "__main__":
     unittest.main()
