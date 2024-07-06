@@ -22,7 +22,7 @@ def md_to_textnodes(md: str) -> list[TextNode]:
 def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
     new_nodes = list[TextNode]()
     for old_node in old_nodes:
-        if old_node.text_type is not TextType.TEXT:
+        if old_node.type is not TextType.TEXT:
             new_nodes.append(old_node)
             continue
 
@@ -57,7 +57,7 @@ def extract_markdown_links(text: str) -> list[tuple[str, str]]:
 def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
     new_nodes = list[TextNode]()
     for old_node in old_nodes:
-        if old_node.text_type is not TextType.TEXT:
+        if old_node.type is not TextType.TEXT:
             new_nodes.append(old_node)
             continue
 
@@ -85,7 +85,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
     new_nodes = list[TextNode]()
     for old_node in old_nodes:
-        if old_node.text_type is not TextType.TEXT:
+        if old_node.type is not TextType.TEXT:
             new_nodes.append(old_node)
             continue
 

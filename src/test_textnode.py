@@ -37,7 +37,7 @@ class TestTextNode(unittest.TestCase):
     def test_converter3(self):
         text_node = TextNode("image", TextType.IMAGE, "boot.dev/cat.png")
         html_node = textnode_to_htmlnode(text_node)
-        expected_html = '<img src="boot.dev/cat.png" alt="image"></img>'
+        expected_html = '<img src="boot.dev/cat.png" alt="image">'
         self.assertEqual(html_node.to_html(), expected_html)
 
 

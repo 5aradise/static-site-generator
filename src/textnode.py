@@ -12,34 +12,34 @@ class TextType(Enum):
 
 
 class TextNode:
-    def __init__(self, text: str, text_type: TextType, url: str = None):
-        if text_type not in TextType:
+    def __init__(self, text: str, type: TextType, url: str = None):
+        if type not in TextType:
             raise Exception("unknown text type")
 
         self.text = text
-        self.text_type = text_type
+        self.type = type
         self.url = url
 
     def __eq__(self, other: 'TextNode') -> bool:
         return (self.text == other.text
-                and self.text_type == other.text_type
+                and self.type == other.type
                 and self.url == other.url)
 
     def __repr__(self) -> str:
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
 
 
-def textnode_to_htmlnode(text_node: TextNode) -> LeafNode:
-    match text_node.text_type:
+def textnode_to_htmlnode(textnode: TextNode) -> LeafNode:
+    match textnode.type:
         case TextType.TEXT:
-            return LeafNode(None, text_node.text)
+            return LeafNode(None, textnode.text)
         case TextType.BOLD:
-            return LeafNode("b", text_node.text)
+            return LeafNode("b", textnode.text)
         case TextType.ITALIC:
-            return LeafNode("i", text_node.text)
+            return LeafNode("i", textnode.text)
         case TextType.CODE:
-            return LeafNode("code", text_node.text)
+            return LeafNode("code", textnode.text)
         case TextType.LINK:
-            return LeafNode("a", text_node.text, {"href": text_node.url})
+            return LeafNode("a", textnode.text, {"href": textnode.url})
         case TextType.IMAGE:
-            return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+            return LeafNode("img", "", {"src": textnode.url, "alt": textnode.text})

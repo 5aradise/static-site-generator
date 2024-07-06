@@ -1,5 +1,5 @@
 from htmlnode import *
-from md_to_textblock import BlockType, md_to_textblocks
+from md_to_textblock import md_to_textblocks
 from textblock import textblock_to_htmlnode
 
 def md_to_htmlnode(md: str) -> ParentNode:
