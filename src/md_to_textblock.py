@@ -29,7 +29,7 @@ def md_to_textblock(md: str) -> TextBlock:
             return TextBlock([md[i+1:]], headind_types[i-1])
 
     if md.startswith(block_type_marks[BlockType.CODE]) and md.endswith(block_type_marks[BlockType.CODE]):
-        return TextBlock([md[len(block_type_marks[BlockType.CODE]):]], BlockType.CODE)
+        return TextBlock([md[len(block_type_marks[BlockType.CODE])+1:-(len(block_type_marks[BlockType.CODE])+1)]], BlockType.CODE)
 
     if md.startswith(block_type_marks[BlockType.QUOTE]):
         isQuote = True

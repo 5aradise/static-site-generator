@@ -8,4 +8,4 @@ def md_to_htmlnode(md: str) -> ParentNode:
     for textblock in textblocks:
         htmlnode = textblock_to_htmlnode(textblock)
         all_parent_nodes.append(htmlnode)
-    return ParentNode("div", all_parent_nodes)
+    return ParentNode("div", [all_parent_nodes])

@@ -47,10 +47,12 @@ block_type_tag = {
 
 
 def textblock_to_htmlnode(textblock: TextBlock):
-    leaf_nodes = list[LeafNode]()
+    leaf_nodes = list[list[LeafNode]]()
     for md_line in textblock.body:
         textnodes = md_to_textnodes(md_line)
+        html_line = list[LeafNode]()
         for textnode in textnodes:
             htmlnode = textnode_to_htmlnode(textnode)
-            leaf_nodes.append(htmlnode)
+            html_line.append(htmlnode)
+        leaf_nodes.append(html_line)
     return ParentNode(block_type_tag[textblock.type], leaf_nodes)

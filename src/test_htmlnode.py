@@ -26,12 +26,12 @@ class TestParentNode(unittest.TestCase):
     def test_to_html(self):
         node = ParentNode(
             "p",
-            [
+            [[
                 LeafNode("b", "Bold text"),
                 LeafNode(None, "Normal text"),
                 LeafNode("i", "italic text"),
                 LeafNode(None, "Normal text"),
-            ],
+            ]],
         )
         expected_html = "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>"
         self.assertEqual(node.to_html(), expected_html)
@@ -39,21 +39,21 @@ class TestParentNode(unittest.TestCase):
     def test_to_html2(self):
         node = ParentNode(
             "p",
-            [
+            [[
                 LeafNode("b", "Bold text"),
                 LeafNode(None, "Normal text"),
                 LeafNode("i", "italic text"),
                 LeafNode(None, "Normal text"),
                 ParentNode(
                     "p",
-                    [
+                    [[
                         LeafNode("b", "Bold text"),
                         LeafNode(None, "Normal text"),
                         LeafNode("i", "italic text"),
                         LeafNode(None, "Normal text"),
-                    ],
+                    ]],
                 ),
-            ],
+            ]],
         )
         expected_html = "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p></p>"
         self.assertEqual(node.to_html(), expected_html)
@@ -71,22 +71,22 @@ class TestParentNode(unittest.TestCase):
     def test_to_html4(self):
         node = ParentNode(
             "p",
-            [
+            [[
                 LeafNode("b", "Bold text"),
                 LeafNode(None, "Normal text"),
                 LeafNode("a", "Click me!", {"href": "https://www.google.com"}),
                 LeafNode(None, "Normal text"),
                 ParentNode(
                     "p",
-                    [
+                    [[
                         LeafNode("b", "Bold text"),
                         LeafNode(None, "Normal text"),
                         LeafNode("i", "italic text"),
                         LeafNode(None, "Normal text"),
-                    ],
+                    ]],
                     {"alt": "Description of image"}
                 ),
-            ],
+            ]],
             {"href": "https://www.google.com", "target": "_blank"}
         )
         expected_html = '<p href="https://www.google.com" target="_blank"><b>Bold text</b>Normal text<a href="https://www.google.com">Click me!</a>Normal text<p alt="Description of image"><b>Bold text</b>Normal text<i>italic text</i>Normal text</p></p>'
