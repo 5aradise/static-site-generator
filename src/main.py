@@ -1,8 +1,12 @@
-from md_to_htmlnode import *
+from copy_dir import copy_dir
+
+
+dir_path_static = "./static"
+dir_path_public = "./public"
 
 
 def main():
-    pass
+    copy_dir(dir_path_static, dir_path_public)
 
 
 main()
