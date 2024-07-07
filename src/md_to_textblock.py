@@ -5,7 +5,7 @@ from textblock import *
 block_type_marks = {
     BlockType.HEADING: "#",
     BlockType.CODE: "```",
-    BlockType.QUOTE: "> ",
+    BlockType.QUOTE: ">",
     BlockType.UNORDERED_LIST: "* ",
     BlockType.ORDERED_LIST: ". "
 }
