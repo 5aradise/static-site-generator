@@ -1,13 +1,15 @@
-from generate_page import generate_page
+from copy_dir import copy_dir
+from generate_page import generate_pages
 
-
-content_path = "content/index.md"
-template_path = "template.html"
-public_path = "public/index.html"
+static_dir_path = "./static"
+content_dir_path = "./content"
+template_path = "./template.html"
+public_dir_path = "./public"
 
 
 def main():
-    generate_page(content_path, template_path, public_path)
+    copy_dir(static_dir_path, public_dir_path)
+    generate_pages(content_dir_path, template_path, public_dir_path)
 
 
 main()

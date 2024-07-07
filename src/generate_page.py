@@ -2,6 +2,17 @@ import os
 from md_to_htmlnode import *
 
 
+def generate_pages(src: os.path, tmpl: os.path, dst: os.path):
+    if os.path.isfile(src):
+        generate_page(src, tmpl, dst.replace(".md", ".html"))
+        return
+
+    for src_entrie in os.listdir(src):
+        generate_pages(os.path.join(src, src_entrie),
+                       tmpl,
+                       os.path.join(dst, src_entrie))
+
+
 def generate_page(src: os.path, tmpl: os.path, dst: os.path):
     with open(src) as src_file:
         md = src_file.read()
